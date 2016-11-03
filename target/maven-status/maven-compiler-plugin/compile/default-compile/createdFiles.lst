@@ -1,0 +1,9 @@
+com/keepitfresh/web/ItemController.class
+com/keepitfresh/web/LogoutController.class
+com/keepitfresh/exception/ExceptionController.class
+com/keepitfresh/model/ItemService.class
+com/keepitfresh/model/ItemDao.class
+com/keepitfresh/model/Item.class
+com/keepitfresh/web/ItemRestController.class
+com/keepitfresh/security/SecurityConfiguration.class
+com/keepitfresh/web/AboutController.class
