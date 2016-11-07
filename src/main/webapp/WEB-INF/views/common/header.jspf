@@ -1,11 +1,20 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <html>
 <head>
 <title>KeepItFresh Application</title>
-<link href="webjars/bootstrap/3.3.6/css/bootstrap.min.css"
-    rel="stylesheet">
+<link href="webjars/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+<link href="webjars/bootstrap-datepicker/1.6.1/css/bootstrap-datepicker3.min.css" rel="stylesheet">
+<link href="webjars/tablesorter/2.25.4/css/theme.bootstrap.css" rel="stylesheet">
+<link href="<c:url value="/resources/css/tablesorter/addons/pager/jquery.tablesorter.pager.css" />" rel="stylesheet">
+<link href="<c:url value="/resources/css/styles.css" />" rel="stylesheet">
+<script src="webjars/jquery/1.9.1/jquery.min.js"></script>
+<script src="webjars/tablesorter/2.25.4/js/jquery.tablesorter.js"></script>
+<script src="webjars/tablesorter/2.25.4/js/jquery.tablesorter.widgets.js"></script>
+<script src="webjars/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="webjars/bootstrap-datepicker/1.6.1/js/bootstrap-datepicker.min.js"></script>
+<script src="<c:url value="/resources/js/tablesorter/addons/pager/jquery.tablesorter.pager.js" />"></script>
 </head>
 
 <body>

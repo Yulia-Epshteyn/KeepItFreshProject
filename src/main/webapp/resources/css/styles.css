@@ -1,0 +1,33 @@
+header[role="banner"] > a.brand-logo {
+	display: block;
+	margin: 20px auto 20px 20px;
+}
+
+#itemsTable {
+	margin-top: 20px;
+	margin-bottom: 0;
+}
+
+#itemsTable > thead th {
+	border-top: 1px solid #ddd;
+	border-left: 1px solid #ddd;
+}
+
+#itemsTable td {
+	border-left: 1px solid #ddd;
+}
+
+#itemsTable > tbody > tr:last-child > td {
+	border-bottom: 1px solid #ddd;
+}
+
+#itemsTable > thead th:last-child, #itemsTable > tbody td:last-child {
+	background: #fff;
+	border-width: 0 0 0 1px !important;
+	border-style: solid;
+	border-color: #ddd;
+}
+
+#itemsTable > tfoot th {
+	background: #fff;
+}

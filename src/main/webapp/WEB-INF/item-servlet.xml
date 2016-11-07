@@ -23,6 +23,7 @@
     </bean>
 
     <mvc:resources mapping="/webjars/**" location="/webjars/"/>
+    <mvc:resources mapping="/resources/**" location="/resources/"/>
 
 <!-- BoneCP configuration -->
     <bean id="mainDataSource" class="com.jolbox.bonecp.BoneCPDataSource" destroy-method="close">

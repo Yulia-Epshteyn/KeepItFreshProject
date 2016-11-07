@@ -17,24 +17,25 @@
         </fieldset>
         <fieldset class="form-group">
             <form:label path="quantity">Quantity</form:label>
-            <form:input path="quantity" type="text" class="form-control"
+            <form:input path="quantity" type="number" min="1" class="form-control"
                 required="required" />
             <form:errors path="quantity" cssClass="text-warning" />
         </fieldset>
-                <fieldset class="form-group">
+        <fieldset class="form-group">
             <form:label path="expDate">Expiration Date</form:label>
             <form:input path="expDate" type="text" class="form-control"
-                required="required" />
+                required="required" id="datepicker" />
             <form:errors path="expDate" cssClass="text-warning" />
         </fieldset>
         <button type="submit" class="btn btn-success">Submit</button>
     </form:form>
 </div>
 
+
 <%@ include file="common/footer.jspf"%>
 
 <script>
-    $('#expDate').datepicker({
+    $('#datepicker').datepicker({
         format : 'mm/dd/yyyy'
     });
 </script>

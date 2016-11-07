@@ -2,14 +2,17 @@
 <%@ include file="common/navigation.jspf"%>
 
 <div class="container">
-    <table class="table table-striped">
+    <div>
+        <a type="button" class="btn btn-success" href="/add-item">Add</a>
+    </div>
+    <table id="itemsTable" class="tablesorter">
         <thead>
-            <tr>
+        	<tr>
                 <th>Name</th>
                 <th>Category</th>
                 <th>Quantity</th>
                 <th>Expiration date</th>
-                <th></th>
+                <th class="sorter-false"></th>
             </tr>
         </thead>
         <tbody>
@@ -25,9 +28,50 @@
                 </tr>
             </c:forEach>
         </tbody>
+        <tfoot>
+        	<tr>
+        		<th colspan="4">
+        			<div class="pager">
+        				<button type="button" class="first"><<</button>
+        				<button type="button" class="prev"><</button>
+        				<span class="pagedisplay"></span>
+        				<button type="button" class="next">></button>
+        				<button type="button" class="last">>></button>
+        				<select class="gotoPage" title="Select page number"></select>
+        			</div>
+        		</th>
+        	</tr>
+        </tfoot>
     </table>
-    <div>
-        <a type="button" class="btn btn-success" href="/add-item">Add</a>
-    </div>
 </div>
+
+<script>
+	$(function() {
+		$.tablesorter.themes.bootstrap = {
+			table        : 'table table-striped table-hover',
+			iconSortNone : 'bootstrap-icon-unsorted', // class name added to icon when column is not sorted
+			iconSortAsc  : 'glyphicon glyphicon-chevron-up', // class name added to icon when column has ascending sort
+			iconSortDesc : 'glyphicon glyphicon-chevron-down' // class name added to icon when column has descending sort
+		};
+		
+		$("#itemsTable")
+		.tablesorter({ 
+			sortList: [[3,0]], 
+			widthFixed: true, 
+			widgets: ['uitheme','zebra'],
+			theme: 'bootstrap',
+			initWidgets: true,
+			headerTemplate: '{content}{icon}',
+			widgetOptions: {
+				zebra: ["even", "odd"]
+			}
+		})
+		.tablesorterPager({
+			container: $(".pager"),
+		    output: '{startRow} to {endRow} ({totalRows})',
+		    size: 10
+		});
+	});
+</script>
+
 <%@ include file="common/footer.jspf"%>
