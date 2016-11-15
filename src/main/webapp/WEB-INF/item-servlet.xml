@@ -28,7 +28,7 @@
 <!-- BoneCP configuration -->
     <bean id="mainDataSource" class="com.jolbox.bonecp.BoneCPDataSource" destroy-method="close">
         <property name="driverClass" value="org.h2.Driver" />
-        <property name="jdbcUrl" value="jdbc:h2:~/EclipseProjects/keepItFresh/keepItFreshDB" />
+        <property name="jdbcUrl" value="jdbc:h2:./keepItFreshDB" />
         <property name="username" value="sa"/>
         <property name="password" value=""/>
         <property name="idleConnectionTestPeriodInMinutes" value="60"/>

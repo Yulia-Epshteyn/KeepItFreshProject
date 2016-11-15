@@ -28,6 +28,7 @@
             <form:errors path="expDate" cssClass="text-warning" />
         </fieldset>
         <button type="submit" class="btn btn-success">Submit</button>
+        <a href="/" class="btn btn-danger" role="button">Cancel</a>
     </form:form>
 </div>
 

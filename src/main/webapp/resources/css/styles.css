@@ -1,7 +1,11 @@
-header[role="banner"] > a.brand-logo {
-	display: block;
-	margin: 20px auto 20px 20px;
+
+
+.navbar-collapse {
+	background-color: #3e474f
 }
+body {
+	background-color:#edeff0;
+	}
 
 #itemsTable {
 	margin-top: 20px;
@@ -22,12 +26,16 @@ header[role="banner"] > a.brand-logo {
 }
 
 #itemsTable > thead th:last-child, #itemsTable > tbody td:last-child {
-	background: #fff;
+	background-color:#edeff0;
 	border-width: 0 0 0 1px !important;
 	border-style: solid;
 	border-color: #ddd;
 }
 
 #itemsTable > tfoot th {
-	background: #fff;
+	background-color:#edeff0
+}
+
+.spacer {
+	margin-top: 40px;
 }

@@ -2,9 +2,7 @@
 <%@ include file="common/navigation.jspf"%>
 
 <div class="container">
-    <div>
-        <a type="button" class="btn btn-success" href="/add-item">Add</a>
-    </div>
+
     <table id="itemsTable" class="tablesorter">
         <thead>
         	<tr>
@@ -22,8 +20,8 @@
                     <td>${item.category}</td>
                     <td>${item.quantity}</td>
                     <td><fmt:formatDate pattern="MM/dd/yyyy" value="${item.expDate}" /></td>
-                    <td><a type="button" class="btn btn-primary" href="/update-item?id=${item.id}">Edit</a> 
-                        <a type="button" class="btn btn-warning" href="/delete-item?id=${item.id}">Delete</a>
+                    <td><a type="button" class="btn btn-info" href="/update-item?id=${item.id}">Edit</a> 
+                        <a type="button" class="btn btn-danger" href="/delete-item?id=${item.id}">Delete</a>
                     </td>
                 </tr>
             </c:forEach>
@@ -31,13 +29,15 @@
         <tfoot>
         	<tr>
         		<th colspan="4">
-        			<div class="pager">
-        				<button type="button" class="first"><<</button>
-        				<button type="button" class="prev"><</button>
-        				<span class="pagedisplay"></span>
-        				<button type="button" class="next">></button>
-        				<button type="button" class="last">>></button>
-        				<select class="gotoPage" title="Select page number"></select>
+        			<div style="position:relative">
+        				<div class="pager" style="">
+        					<button type="button" class="btn prev"><</button>
+        					<span class="pagedisplay"></span>
+        					<button type="button" class="btn next">></button>
+        				</div>
+        				<div style="position:absolute; top: 5px"> 
+        					<a type="button" class="btn btn-success" href="/add-item">  Add  </a>
+    					</div>
         			</div>
         		</th>
         	</tr>
@@ -68,8 +68,8 @@
 		})
 		.tablesorterPager({
 			container: $(".pager"),
-		    output: '{startRow} to {endRow} ({totalRows})',
-		    size: 10
+		    output: '{startRow} to {endRow}',
+		    size: 5
 		});
 	});
 </script>
