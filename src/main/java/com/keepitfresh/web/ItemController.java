@@ -51,6 +51,11 @@ public class ItemController {
         return "list-items";
     }
 
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String loginPage() {
+	    return "login";
+	}
+    
     @RequestMapping(value = "/add-item", method = RequestMethod.GET)
     public String showAddItemPage(ModelMap model) {
         model.addAttribute("item", new Item());

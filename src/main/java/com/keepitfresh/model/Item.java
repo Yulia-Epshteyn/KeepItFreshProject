@@ -36,7 +36,7 @@ public class Item
 	
 	@Column(name = "quantity")
 	@Min(1)
-    private int quantity;
+    private Integer quantity;
 	
 	@Column(name = "exp_date")
     private Date expDate;
@@ -45,7 +45,7 @@ public class Item
         super();
     }
     
-    public Item(String user, String name, Category category, int quantity, Date expDate)
+    public Item(String user, String name, Category category, Integer quantity, Date expDate)
     {
         super();
         this.user = user;
@@ -89,7 +89,7 @@ public class Item
 		this.category = category;
 	}
 
-	public int getQuantity()
+	public Integer getQuantity()
     {
         return quantity;
     }

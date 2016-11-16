@@ -22,7 +22,7 @@ public class ItemService {
     	dao.save(item);
     }
 
-    public void addItem(String user, String name, Category category, int quantity, Date expDate) {
+    public void addItem(String user, String name, Category category, Integer quantity, Date expDate) {
     	Item i = new Item(user, name, category, quantity, expDate);
     	dao.save(i);
     }
