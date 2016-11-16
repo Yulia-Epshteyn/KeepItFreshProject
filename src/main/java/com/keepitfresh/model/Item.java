@@ -6,31 +6,46 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name = "ITEM")
 public class Item
 {
-   @Id @GeneratedValue
-   @Column(name = "id")
+	@Id @GeneratedValue
+	@Column(name = "id")
 	private int id;
-   @Column(name = "user")
+	
+	@Column(name = "user")
     private String user;
-   @Column(name = "name")
+	
+	@Column(name = "name")
+	@NotEmpty
     private String name;
-   @Column(name = "category")
-    private String category;
-   @Column(name = "quantity")
+	
+	@ManyToOne
+	@JoinColumn(name = "category_id")
+	@NotNull
+    private Category category;
+	
+	@Column(name = "quantity")
+	@Min(1)
     private int quantity;
-   @Column(name = "exp_date")
+	
+	@Column(name = "exp_date")
     private Date expDate;
     
     public Item() {
         super();
     }
     
-    public Item(String user, String name, String category, int quantity, Date expDate)
+    public Item(String user, String name, Category category, int quantity, Date expDate)
     {
         super();
         this.user = user;
@@ -66,17 +81,15 @@ public class Item
         this.name = name;
     }
 
-    public String getCategory()
-    {
-        return category;
-    }
+    public Category getCategory() {
+		return category;
+	}
 
-    public void setCategory(String category)
-    {
-        this.category = category;
-    }
+	public void setCategory(Category category) {
+		this.category = category;
+	}
 
-    public int getQuantity()
+	public int getQuantity()
     {
         return quantity;
     }
@@ -93,7 +106,6 @@ public class Item
 	public void setExpDate(Date expDate) {
 		this.expDate = expDate;
 	}
-
 
     @Override
     public String toString() {

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 public class ItemService {
 
     @Autowired
-    ItemDao dao;
+    private ItemDao dao;
 
     public Iterable<Item> retrieveItems(String user) {
     	return dao.findAll();
@@ -22,7 +22,7 @@ public class ItemService {
     	dao.save(item);
     }
 
-    public void addItem(String user, String name, String category, int quantity, Date expDate) {
+    public void addItem(String user, String name, Category category, int quantity, Date expDate) {
     	Item i = new Item(user, name, category, quantity, expDate);
     	dao.save(i);
     }

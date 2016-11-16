@@ -17,10 +17,10 @@
             <c:forEach items="${items}" var="item">
                 <tr>
                     <td>${item.name}</td>
-                    <td>${item.category}</td>
+                    <td>${item.category.name}</td>
                     <td>${item.quantity}</td>
                     <td><fmt:formatDate pattern="MM/dd/yyyy" value="${item.expDate}" /></td>
-                    <td><a type="button" class="btn btn-info" href="/update-item?id=${item.id}">Edit</a> 
+                    <td><a type="button" class="btn btn-primary" href="/update-item?id=${item.id}">Edit</a> 
                         <a type="button" class="btn btn-danger" href="/delete-item?id=${item.id}">Delete</a>
                     </td>
                 </tr>

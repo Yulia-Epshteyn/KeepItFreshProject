@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 public class SettingService {
 
     @Autowired
-    SettingDao dao;
+    private SettingDao dao;
 
     public Iterable<Setting> retrieveSettings(String user) {
     	return dao.findAll();

@@ -11,8 +11,10 @@
         </fieldset>
         <fieldset class="form-group">
             <form:label path="category">Category</form:label>
-            <form:input path="category" type="text" class="form-control"
-                required="required" />
+            <form:select path="category" class="form-control" required="required">
+            	<form:option value="" label="--- Select One ---" disabled="true" selected="true"></form:option>
+            	<form:options items="${categories}" itemValue="id" itemLabel="name"></form:options>
+            </form:select>
             <form:errors path="category" cssClass="text-warning" />
         </fieldset>
         <fieldset class="form-group">

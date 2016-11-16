@@ -16,7 +16,7 @@
             <form:errors path="daysBeforeExp" cssClass="text-warning" />
         </fieldset>
         <button type="submit" class="btn btn-success">Submit</button>
-        <a href="/" class="btn btn-danger" role="button">Cancel</a>
+        <a href="/list-settings" class="btn btn-danger" role="button">Cancel</a>
     </form:form>
 </div>
 

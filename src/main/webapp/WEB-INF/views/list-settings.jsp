@@ -40,7 +40,7 @@
                 <tr>
                     <td>${category.name}</td>
                     <td><a type="button" class="btn btn-primary" href="/update-category?id=${category.id}">Edit</a> 
-                        <a type="button" class="btn btn-warning" href="/delete-category?id=${category.id}">Delete</a>
+                        <a type="button" class="btn btn-danger" href="/delete-category?id=${category.id}">Delete</a>
                     </td>
                 </tr>
             </c:forEach>

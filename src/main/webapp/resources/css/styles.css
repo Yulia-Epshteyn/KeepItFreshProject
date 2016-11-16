@@ -1,12 +1,39 @@
+a {
+    color: #dadada;
+}
 
-
-.navbar-collapse {
-	background-color: #3e474f
+.navbar-brand {
+    float: left;
+    padding: 15px 10px;
+    font-size: 18px;
+    
+}
+.nav>li>a {
+    display: block;
+    padding: 20px 15px;
+}
+header{
+	background-color: #525f69;
+	font-size: 18px;
+	font-family: Verdana,sans-serif;
+}
+.nav{
+	color: #fff;
+}
+.navbar-collapse{
+	height: 60px;
+	
+	background-color: #525f69
 }
 body {
 	background-color:#edeff0;
 	}
 
+
+#logout{
+	margin-left:460px;
+	
+} 
 #itemsTable {
 	margin-top: 20px;
 	margin-bottom: 0;

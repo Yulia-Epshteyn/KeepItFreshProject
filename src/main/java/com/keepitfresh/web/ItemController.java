@@ -14,10 +14,13 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.keepitfresh.model.Category;
+import com.keepitfresh.model.CategoryService;
 import com.keepitfresh.model.Item;
 import com.keepitfresh.model.ItemService;
 
@@ -25,19 +28,26 @@ import com.keepitfresh.model.ItemService;
 public class ItemController {
 
     @Autowired
-    private ItemService service;
+    private ItemService itemService;
+    
+    @Autowired
+    private CategoryService categoryService;
+    
+    @Autowired
+    private CategoryEditor categoryEditor;
 
     @InitBinder
     protected void initBinder(WebDataBinder binder) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
         binder.registerCustomEditor(Date.class, new CustomDateEditor(
                 dateFormat, false));
+        binder.registerCustomEditor(Category.class, categoryEditor);
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String showItemsList(ModelMap model) {
         String user = getLoggedInUserName();
-        model.addAttribute("items", service.retrieveItems(user));
+        model.addAttribute("items", itemService.retrieveItems(user));
         return "list-items";
     }
 
@@ -51,7 +61,7 @@ public class ItemController {
     public String addItem(ModelMap model, @Valid Item item, BindingResult result) {
         if (result.hasErrors())
             return "item";
-        service.addItem(getLoggedInUserName(), item.getName(),
+        itemService.addItem(getLoggedInUserName(), item.getName(),
                 item.getCategory(), item.getQuantity(), item.getExpDate());
         model.clear();// to prevent request parameter "name" to be passed
         return "redirect:/";
@@ -69,7 +79,7 @@ public class ItemController {
 
     @RequestMapping(value = "/update-item", method = RequestMethod.GET)
     public String showUpdateItemPage(ModelMap model, @RequestParam int id) {
-        model.addAttribute("item", service.retrieveItem(id));
+        model.addAttribute("item", itemService.retrieveItem(id));
         return "item";
     }
 
@@ -80,7 +90,7 @@ public class ItemController {
             return "item";
 
         item.setUser(getLoggedInUserName());
-        service.updateItem(item);
+        itemService.updateItem(item);
 
         model.clear();// to prevent request parameter "name" to be passed
         return "redirect:/";
@@ -88,7 +98,13 @@ public class ItemController {
 
     @RequestMapping(value = "/delete-item", method = RequestMethod.GET)
     public String deleteItem(@RequestParam int id) {
-    	service.deleteItem(id);
+    	itemService.deleteItem(id);
         return "redirect:/";
     }
+    
+    @ModelAttribute("categories")
+	public Iterable<Category> getCategories()
+	{
+		return categoryService.retrieveCategories();
+	}
 }
