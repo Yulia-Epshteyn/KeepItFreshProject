@@ -2,7 +2,15 @@
 <%@ include file="common/navigation.jspf"%>
 
 <div class="container">
-
+<div class="row">
+        <div class="col-md-5">    		
+            <div id="custom-search-input">
+                <div class="input-group col-md-12">
+                    <input id="search" type="text" class="form-control input-lg" placeholder="Search the item" />
+               </div>
+            </div>
+        </div>
+	</div>
     <table id="itemsTable" class="tablesorter">
         <thead>
         	<tr>
@@ -10,17 +18,18 @@
                 <th>Category</th>
                 <th>Quantity</th>
                 <th>Expiration date</th>
-                <th class="sorter-false"></th>
+               
             </tr>
         </thead>
         <tbody>
             <c:forEach items="${items}" var="item">
                 <tr>
-                    <td>${item.name}</td>
-                    <td>${item.category.name}</td>
-                    <td>${item.quantity}</td>
-                    <td><fmt:formatDate pattern="MM/dd/yyyy" value="${item.expDate}" /></td>
-                    <td><a type="button" class="btn btn-primary" href="/update-item?id=${item.id}">Edit</a> 
+                    <td class="col-md-3">${item.name}</td>
+                    <td class="col-md-3">${item.category.name}</td>
+                    <td class="col-md-2">${item.quantity}</td>
+                    <td class="col-md-2"><fmt:formatDate pattern="MM/dd/yyyy" value="${item.expDate}" /></td>
+                    <td class="col-md-2">
+                    	<a type="button" class="btn btn-primary" href="/update-item?id=${item.id}">Edit</a> 
                         <a type="button" class="btn btn-danger" href="/delete-item?id=${item.id}">Delete</a>
                     </td>
                 </tr>
@@ -71,6 +80,16 @@
 		    output: '{startRow} to {endRow}',
 		    size: 5
 		});
+		
+		
+	});
+	
+	
+	$(function() {
+	    /* Resource: https://github.com/riklomas/quicksearch */
+	    $('#search').quicksearch('table tbody tr', {
+	      selector: 'td:first-child'
+	    });
 	});
 </script>
 

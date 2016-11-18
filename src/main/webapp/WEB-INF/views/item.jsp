@@ -6,7 +6,7 @@
         <fieldset class="form-group">
             <form:label path="name">Name of product</form:label>
             <form:input path="name" type="text" class="form-control"
-                required="required" />
+                required="required" autocomplete="off" />
             <form:errors path="name" cssClass="text-warning" />
         </fieldset>
         <fieldset class="form-group">
@@ -20,13 +20,13 @@
         <fieldset class="form-group">
             <form:label path="quantity">Quantity</form:label>
             <form:input path="quantity" type="number" min="1" class="form-control"
-                required="required" />
+                required="required" autocomplete="off" />
             <form:errors path="quantity" cssClass="text-warning" />
         </fieldset>
         <fieldset class="form-group">
             <form:label path="expDate">Expiration Date</form:label>
             <form:input path="expDate" type="text" class="form-control"
-                required="required" id="datepicker" />
+                required="required" id="datepicker" autocomplete="off" />
             <form:errors path="expDate" cssClass="text-warning" />
         </fieldset>
         <button type="submit" class="btn btn-success">Submit</button>
@@ -39,6 +39,9 @@
 
 <script>
     $('#datepicker').datepicker({
-        format : 'mm/dd/yyyy'
+        format : 'mm/dd/yyyy',
+        startDate: "now()",
+        autoclose: true,
+        todayHighlight: true
     });
 </script>
