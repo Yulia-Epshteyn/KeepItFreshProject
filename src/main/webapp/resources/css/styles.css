@@ -97,6 +97,19 @@ ul#logout {
 	background-color:#edeff0
 }
 
+#itemsTable_wrapper {
+	margin-bottom: 20px;
+}
+
+#itemsTable_filter {
+	display: none;
+}
+
+#itemsTable_paginate {
+	margin: 0 auto;
+	text-align: center;
+}
+
 #settings > table > thead th:last-child, #settings > table > tbody td:last-child {
 	background-color:#edeff0;
 	border-width: 0;
@@ -104,4 +117,20 @@ ul#logout {
 
 .spacer {
 	margin-top: 40px;
+}
+
+.mini-spacer {
+	margin-top: 20px;
+}
+
+div#search-container {
+	padding: 0;
+}
+
+#itemsTable > tbody > tr > td.dataTables_empty {
+	border-left: 0;
+}
+
+#itemsTable > tfoot > tr > th {
+	border-width: 0;
 }

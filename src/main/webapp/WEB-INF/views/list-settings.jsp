@@ -16,7 +16,7 @@
                     <td class="col-md-3">${setting.emailAddress}</td>
                     <td class="col-md-4">${setting.daysBeforeExp}</td>
                     <td class="col-md-5"><a type="button" class="btn btn-primary" href="/update-setting?id=${setting.id}">Edit</a> 
-                        <a type="button" class="btn btn-danger" href="/delete-setting?id=${setting.id}">Delete</a>
+                        <a type="button" class="btn btn-danger" href="/delete-setting?id=${setting.id}" data-toggle="confirmation">Delete</a>
                     </td>
                 </tr>
             </c:forEach>

@@ -16,6 +16,8 @@ public class CategoryEditor extends PropertyEditorSupport {
     @Override
     public void setAsText(String id) 
     {
-    	this.setValue(categoryService.retrieveCategory(Integer.parseInt(id)));
+    	if (!id.isEmpty()) {
+    		this.setValue(categoryService.retrieveCategory(Integer.parseInt(id)));
+    	}
     }
 }
