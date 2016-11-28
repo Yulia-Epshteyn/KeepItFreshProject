@@ -52,6 +52,8 @@
             <bean class="org.springframework.orm.jpa.vendor.HibernateJpaDialect" />
         </property>
     </bean>
+    
+
  
     <bean id="entityManagerFactory"
           class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
@@ -74,5 +76,27 @@
             </value>
         </property>
     </bean>
-
+    
+        <!-- SET default mail properties -->
+    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="smtp.gmail.com"/>
+        <property name="port" value="465"/>
+        <property name="protocol" value="smtps"/>
+        <property name="username" value="email@gmail.com"/>
+        <property name="password" value="pass"/>
+        <property name="javaMailProperties">
+            <props>
+            <prop key="mail.smtps.auth">true</prop>
+            <prop key="mail.smtp.ssl.enable">true</prop>
+            <prop key="mail.transport.protocol">smtps</prop>
+                <prop key="mail.debug">true</prop>
+            </props>
+        </property>
+    </bean>
+    
+	
+	<bean id="notificationManager" class="com.keepitfresh.model.EmailService">
+	    <property name="mailSender" ref="mailSender"/>
+	</bean>
+    
 </beans>
