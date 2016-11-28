@@ -6,13 +6,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
 
 import com.keepitfresh.model.EmailService;
 import com.keepitfresh.model.Item;
@@ -28,31 +28,42 @@ public class MailController {
     
     @Autowired
     private SettingService settingService;
-	
+    
+    @Autowired
+    private EmailService emailService;
+    
+    
     @RequestMapping(value = "/notify", method = RequestMethod.GET)
     public String sendEmail(ModelMap model) {
-    	EmailService emailService = new EmailService();
+    	
+    	String user = "polina";
+
     	List<Item> listExpiredItem = new ArrayList<Item>();
-/*    	List<Item> listPreExpiredItem = new ArrayList<Item>();*/
+    	List<Item> listPreExpiredItem = new ArrayList<Item>();
     	List<Setting> listOfSettings = new ArrayList<Setting>();
     	Date todayDate = new Date();
     	String today = extractDayFromDate(todayDate);
-    	Iterable<Item> items = itemService.retrieveItems(getLoggedInUserName());
-    	Iterable<Setting> settings = settingService.retrieveSettings(getLoggedInUserName());
-    	for(Item item: items)
-    	{
-    		Date expDate = item.getExpDate();
-    		String expDateString = extractDayFromDate(expDate);
+    	Iterable<Item> items = itemService.retrieveItems(user);
+    	Iterable<Setting> settings = settingService.retrieveSettings(user);
+    	for(Item item: items) {
     		
-    		if(expDateString.equals(today)){
-    			listExpiredItem.add(item);
+    		for(Setting setting: settings ) {
+	    		Date expDate = item.getExpDate();
+	    		String expDateString = extractDayFromDate(expDate);
+	    		Date preNotificationDate = getPreNotificationDate(expDate, setting.getDaysBeforeExp() );
+	    		String preNotificationDateString = extractDayFromDate(preNotificationDate);
+	    		
+	    		if(expDateString.equals(today)){
+	    			listExpiredItem.add(item);
+	    		}
+	    		if(preNotificationDateString.equals(today)){
+	    			listPreExpiredItem.add(item);
+	    		}
     		}
     	}
-    	
-    	
     	for(Setting setting: settings)
     	{
-    		if(setting.getUser().equals(getLoggedInUserName())){
+    		if(setting.getUser().equals(user)){
     			listOfSettings.add(setting);
     		}
     	}
@@ -62,27 +73,27 @@ public class MailController {
     		String email = setting.getEmailAddress();
         	for(Item expiredItem : listExpiredItem)
         	{
-            	emailService.sendEmail(email, getLoggedInUserName(), expiredItem.getName(), expiredItem.getQuantity() );
+            	emailService.sendEmailExpired(email, user, expiredItem.getName(), expiredItem.getQuantity() );
+        	}
+        	for(Item preExpiredItem : listPreExpiredItem)
+        	{
+            	emailService.sendEmailPreExpired(email, user, preExpiredItem.getName(), preExpiredItem.getQuantity(),
+            			                                                  preExpiredItem.getExpDate(), setting.getDaysBeforeExp()   );
         	}
     	}
-
+    	
         return "redirect:/";
     }
     
-    private String getLoggedInUserName() {
-        Object principal = SecurityContextHolder.getContext()
-                .getAuthentication().getPrincipal();
-
-        if (principal instanceof UserDetails)
-            return ((UserDetails) principal).getUsername();
-
-        return principal.toString();
-    }
     
     private String extractDayFromDate(Date date)
     {
     	DateFormat outputFormatter = new SimpleDateFormat("MM/dd/yyyy");
     	return outputFormatter.format(date);
-    	
+    }
+    
+    private Date getPreNotificationDate(Date date, int daysBeforeExp)
+    {
+    	return new DateTime(date).minusDays(daysBeforeExp).toDate();
     }
 }
